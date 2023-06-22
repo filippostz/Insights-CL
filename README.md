@@ -20,6 +20,12 @@ optional arguments:
   --get-info IDCAMP   get Tools and MITRE | arg ex. 6c2ef20f-7c2c-417c-8f5e-73e4b9936a72
   --output FORMAT     IOCs print format | values:["newline","kibana"]
 ```
+## Prerequisites
+the script requires api key, client id and token available to Trellix customers. More info here: https://developer.manage.trellix.com
+Modify the following variables in the insightsCL.py script
+api_key = 'your_api_key_here'
+client_id = 'your_client_id_here'
+client_token = 'your_client_token_here'
 ```
 insightsCL.py --search blackcat --sortby updated-on --limit 3   
 
