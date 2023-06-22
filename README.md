@@ -3,7 +3,8 @@ insightsCL.py offers a terminal interface that enables users to search for speci
 Insights is a comprehensive and regularly updated threat intelligence database.
 ```
 # ./insightsCL.py
-usage: insightsCL.py [-h] [--search KEYWORD] [--sortby SORTBY] [--limit LIMIT] [--get-iocs CAMPID] [--ioc-type IOCTYPE] [--get-info IDCAMP] [--output FORMAT]
+usage: insightsCL.py [-h] [--search KEYWORD] [--sortby SORTBY] [--limit LIMIT] [--get-iocs CAMPID]
+                          [--ioc-type IOCTYPE] [--get-info IDCAMP] [--output FORMAT]
 
 examples of usage:
  insightsCL.py --search apt29
