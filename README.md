@@ -29,7 +29,7 @@ client_id = 'your_client_id_here'
 client_token = 'your_client_token_here'
 ```
 ## Examples
-Get the latest 3 updated Campaigns with keyword "blackcat"
+Search the latest 3 updated Campaigns with keyword "blackcat"
 ```
 insightsCL.py --search blackcat --sortby updated-on --limit 3   
 
