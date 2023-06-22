@@ -38,7 +38,7 @@ Created    | *Updated   | Id                                   | Level  | Name
 2022-01-25 | 2023-04-11 | 5e2d477d-f0ad-494e-917c-dbe4c0514bd6 | Medium | BlackCat - Rust Ransomware-As-A-Service                                 
 2022-03-02 | 2023-04-11 | e1e0a1fa-f65b-43c8-91d0-621e951e3e68 | Medium | The BlackCat And LockBit Ransomware Connection
 ```
-Get the IP indicators asscoated to the campaign with id e1e0a1fa-f65b-43c8-91d0-621e951e3e68
+Get the IP indicators associated to the campaign with id e1e0a1fa-f65b-43c8-91d0-621e951e3e68
 ```
 insightsCL.py --get-iocs e1e0a1fa-f65b-43c8-91d0-621e951e3e68 --ioc-type ip 
 141.136.44.54
