@@ -2,10 +2,7 @@
 insightsCL.py offers a terminal interface that enables users to search for specific cyber threat campaigns or profiles and download associated IOCs leveraging Trellix Insights APIs.
 Insights is a comprehensive and regularly updated threat intelligence database.
 ```
-usage: insightsCL.py [-h] [--search KEYWORD] [--sortby SORTBY] [--limit LIMIT] [--get-iocs CAMPID] [--ioc-type IOCTYPE] [--get-info IDCAMP] [--output FORMAT]
-
-Insights CL v0.6 - A Trellix Insights command line tool - Community Project
-examplese:
+examples of usage:
  insightsCL.py --search apt29
  insightsCL.py --search all --sortby updated-on --limit 5
  insightsCL.py --search 1ef9c42efe6e9a08b7ebb16913fa0228
