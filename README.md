@@ -20,3 +20,11 @@ optional arguments:
   --get-info IDCAMP   get Tools and MITRE | arg ex. 6c2ef20f-7c2c-417c-8f5e-73e4b9936a72
   --output FORMAT     IOCs print format | values:["newline","kibana"]
 ```
+```
+insightsCL.py --search blackcat --sortby updated-on --limit 3   
+
+Created    | *Updated   | Id                                   | Level  | Name                            
+2023-05-22 |            | 5e18ad88-3638-43fb-8702-6b28f82e8f03 | Low    | BlackCat Ransomware Deploys New Signed Kernel Driver                    
+2022-01-25 | 2023-04-11 | 5e2d477d-f0ad-494e-917c-dbe4c0514bd6 | Medium | BlackCat - Rust Ransomware-As-A-Service                                 
+2022-03-02 | 2023-04-11 | e1e0a1fa-f65b-43c8-91d0-621e951e3e68 | Medium | The BlackCat And LockBit Ransomware Connection
+```
