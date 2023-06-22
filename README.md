@@ -28,3 +28,10 @@ Created    | *Updated   | Id                                   | Level  | Name
 2022-01-25 | 2023-04-11 | 5e2d477d-f0ad-494e-917c-dbe4c0514bd6 | Medium | BlackCat - Rust Ransomware-As-A-Service                                 
 2022-03-02 | 2023-04-11 | e1e0a1fa-f65b-43c8-91d0-621e951e3e68 | Medium | The BlackCat And LockBit Ransomware Connection
 ```
+```
+insightsCL.py --get-iocs e1e0a1fa-f65b-43c8-91d0-621e951e3e68 --ioc-type ip 
+141.136.44.54
+188.120.247.108
+45.9.190.135
+185.43.7.120
+```
