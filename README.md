@@ -25,7 +25,7 @@ optional arguments:
   --output FORMAT     IOCs print format | values:["newline","kibana"]
 ```
 ## Prerequisites
-the script requires api key, client id and token available to Trellix customers, more info here: https://developer.manage.trellix.com<br />
+the script requires api key, client id and token available for Trellix customers, more info here: https://developer.manage.trellix.com<br />
 Modify the following variables in the insightsCL.py script<br />
 ```
 api_key = 'your_api_key_here'
