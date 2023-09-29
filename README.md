@@ -50,3 +50,16 @@ insightsCL.py --get-iocs e1e0a1fa-f65b-43c8-91d0-621e951e3e68 --ioc-type ip
 45.9.190.135
 185.43.7.120
 ```
+Get reputation and campaign relationships of a file MD5
+```
+insightsCL.py --search 96ec8798bba011d5be952e0e6398795d
+size: 6075.91KB
+first seen: 2018-07-29 13:14:51
+Reputation: trojan
+Name: rdn/generic pup.z
+Relationships:
+ID                                   | Campaign or Profile
+0b59d0d1-6eb6-42d0-94a1-840df2c5a2a1 - Memento Ransomware Attack
+48d1f8e7-98ca-448d-b35a-8e1dfbc9b5a9 - BlueShell Backdoor Used In Attacks Against Korea And Thailand
+909ba002-0153-44cb-9c28-f5c96b8d6578 - Budworm APT Uses Updated Custom Tool In Attacks On Government And Telecoms
+```
