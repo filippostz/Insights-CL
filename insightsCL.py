@@ -11,9 +11,8 @@ api_key = 'your_api_key_here'
 client_id = 'your_client_id_here'
 client_token = 'your_client_token_here'
 
-version = "0.6"
+version = "0.7"
 default_scopes = "epo.evt.r"
-#base_url = 'https://api.mvision.mcafee.com'
 base_url = 'https://api.manage.trellix.com'
 
 
@@ -72,7 +71,8 @@ def bytes_to_kilobytes(bytes):
 def get_artefacts(session, artefact, type):
     filters = {
         'hashtype': type,
-        'hashvalue': artefact
+        'hashvalue': artefact,
+        'fields': 'campaigns'
     }
     artefact_info = session.get(base_url + '/insights/v2/artefacts/files', params=filters)
     artefact_json=json.loads(artefact_info.text)
@@ -83,29 +83,39 @@ def get_artefacts(session, artefact, type):
         class_type = artefact_json[artefact]["data"]["attributes"]["classification-type"]
         size = artefact_json[artefact]["data"]["attributes"]["file-size"]
         first_seen = artefact_json[artefact]["data"]["attributes"]["first-seen"]
+        relations = artefact_json[artefact]["included"]
         print("size: {}".format(bytes_to_kilobytes(size)))
         print("first seen: {}".format(datetime.fromtimestamp(first_seen)))
-        print("classification: {} - {}".format(class_type,class_name))
+        print("Reputation: {}".format(class_type))
+        print("Name: {}".format(class_name))
+        print("Relationships:")
+        print("{:<36} | {:<10}".format('ID', 'Campaign or Profile'))
+        for relation in relations:
+            print("{} - {}".format(relation['id'],relation['attributes']['name']))
     else:
         print("Artefact not found")
     return artefact_info
 
+
 def get_iocs(session, campaign_id):
     iocs = session.get(base_url + '/insights/v2/campaigns/' + campaign_id + '/iocs')
-    #print("{}\n".format(len(iocs.text)))
     return iocs.text
 
 
-def display_iocs(iocs, format, type=["md5", "sha256", "ip", "url", "domain"]):
+def display_iocs(iocs, format, type=["md5", "sha1", "sha256", "ip", "url", "domain"]):
     parsed_iocs = []
     iocs = json.loads(iocs)
     for ioc in iocs["data"]:
         if ioc["attributes"]["type"] in type:
-            parsed_iocs.append(ioc["attributes"]["value"])
-            if format=="kibana":
-                parsed_iocs.append(" OR ")
+            if format == "full":
+                parsed_iocs.append(ioc["attributes"]["type"] +":" + ioc["attributes"]["value"] + " ||| Comment:" + (ioc["attributes"]["comment"]).replace("\n", "").replace("\r", "") + "\n")
             else:
-                parsed_iocs.append("\n")
+                parsed_iocs.append(ioc["attributes"]["value"])
+                if format=="kibana":
+                    parsed_iocs.append(" OR ")
+                if format=="list":
+                    parsed_iocs.append("\n")
+
     print("".join(parsed_iocs[:-1]))
 
 
@@ -136,6 +146,7 @@ def get_galaxies(session, campaign_id):
 
     galaxies = session.get(base_url + '/insights/v2/campaigns/' + campaign_id + '/galaxies')
     galaxies = galaxies.text
+    print(galaxies)
     return {'mitre': get_mitres(galaxies), 'tools': get_tools(galaxies)}
 
 
@@ -262,7 +273,7 @@ parser.add_argument('--get-iocs', dest='campID', type=str, help='get IOCs | arg 
 parser.add_argument('--ioc-type', dest='ioctype', type=str, help='IOC type | values:["md5","sha256", "ip", "url", "domain"]',
                     default=False)
 parser.add_argument('--get-info', dest='IDcamp', type=str, help='get Tools and MITRE | arg ex. 6c2ef20f-7c2c-417c-8f5e-73e4b9936a72', default="")
-parser.add_argument('--output', dest='format', type=str, help='IOCs print format | values:["newline","kibana"]', default="newline")
+parser.add_argument('--output', dest='format', type=str, help='IOCs print format | values:["list","kibana","full"]', default="list")
 args = parser.parse_args()
 
 if len(sys.argv) == 1:
