@@ -146,7 +146,6 @@ def get_galaxies(session, campaign_id):
 
     galaxies = session.get(base_url + '/insights/v2/campaigns/' + campaign_id + '/galaxies')
     galaxies = galaxies.text
-    print(galaxies)
     return {'mitre': get_mitres(galaxies), 'tools': get_tools(galaxies)}
 
 
