@@ -22,7 +22,7 @@ optional arguments:
   --get-iocs CAMPID   get IOCs | arg ex. 6c2ef20f-7c2c-417c-8f5e-73e4b9936a72
   --ioc-type IOCTYPE  IOC type | values:["md5","sha256", "ip", "url", "domain"]
   --get-info IDCAMP   get Tools and MITRE | arg ex. 6c2ef20f-7c2c-417c-8f5e-73e4b9936a72
-  --output FORMAT     IOCs print format | values:["newline","kibana"]
+  --output FORMAT     IOCs print format | values:["newline","kibana","full"]
 ```
 ## Prerequisites
 the script requires api key, client id and token available for Trellix customers, more info here: https://developer.manage.trellix.com<br />
