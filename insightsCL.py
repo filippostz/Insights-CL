@@ -11,33 +11,34 @@ api_key = 'your_api_key_here'
 client_id = 'your_client_id_here'
 client_token = 'your_client_token_here'
 
-version = "0.7"
-default_scopes = "epo.evt.r"
+version = "0.8"
+default_scopes = "ins.user ins.suser ins.ms.r"
 base_url = 'https://api.manage.trellix.com'
 
 
 def trellix_api_auth(key=api_key, id=client_id, token=client_token, scopes=default_scopes):
-    iam_url = "https://iam.mcafee-cloud.com/iam/v1.1/token"
+    iam_url = "https://auth.trellix.com/auth/realms/IAM/protocol/openid-connect/token"
 
     session = requests.Session()
 
     headers = {
         'x-api-key': key,
-        'Content-Type': 'application/vnd.api+json'
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
 
-    auth = (id, token)
+    authx = (id, token)
 
     payload = {
-        "grant_type": "client_credentials",
-        "scope": scopes
+        'scope': scopes,
+        'grant_type': 'client_credentials'
     }
 
-    res = session.post(iam_url, headers=headers, auth=auth, data=payload)
+    res = session.post(iam_url, headers=headers, data=payload, auth=authx)
 
     if res.ok:
         access_token = res.json()['access_token']
         headers['Authorization'] = 'Bearer ' + access_token
+        headers['Content-Type'] = 'application/vnd.api+json'
         session.headers.update(headers)
         return session
     else:
@@ -46,7 +47,7 @@ def trellix_api_auth(key=api_key, id=client_id, token=client_token, scopes=defau
 
 
 def open_trellix_session():
-    return trellix_api_auth(scopes="ins.user ins.suser ins.ms.r")
+    return trellix_api_auth(scopes=default_scopes)
 
 
 def close_trellix_session(session):
